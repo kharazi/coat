@@ -1,7 +1,90 @@
 <!doctype html>
-<title>Quote</title>
-{% if name %}
-  <h1>Hello {{ name }}!</h1>
-{% else %}
-  <h1>Hello World!</h1>
-{% endif %}
+<html ng-app='Quote' align="rtl">
+  <head>
+    <meta charset='utf-8'>
+    <title>Quote - A Quote Sharing Web Service</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css"></link>
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css"></link>
+
+    <script type="text/javascript" src="/static/js/angular.js"></script>
+    <script type="text/javascript" src="/static/js/infinite-scroll.js"></script>
+    <script type="text/javascript" src="/static/js/index.js"></script>
+    <script type="text/javascript">
+      angular.module('Quote').config(function($interpolateProvider) {
+          $interpolateProvider.startSymbol('{$');
+          $interpolateProvider.endSymbol('$}');
+      });
+    </script>
+  </head>
+  <body ng-controller="QuoteCtr">
+    <div class="container">
+      <div class="row">
+        <br />
+        <div class="col-md-10">
+          <h1>
+
+          </h1>
+        </div>
+
+        <div class="col-md-2">
+          <img src="/static/images/quote.png" class="img-responsive" alt="Quote">
+        </div>
+      </div>
+
+      <div class="row">
+        <hr/>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <blockquote class="pull-right">
+                <p>اینست تفاوت بین ساختن و خلق کردن: اینکه چیز ساخته شده ، تنها پس از ساخته شدن دوست داشته می شود، اما چیزی که خلق شده , قبل از بوجود آمدن دوست داشته شده است.</p>
+                <small><cite title="Source Title">چارلز دیکنز</cite></small>
+
+              </blockquote>
+            </div>
+            <div class="panel-footer">Panel footer</div>
+
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <blockquote class="pull-right">
+                <p>مرگ به‌همگی ما لبخند می‌زند، تنها کاری که می‌توان انجام داد این است که لبخندش را با لبخند پاسخ گوییم.</p>
+                <small><cite title="Source Title">مارکوس اورلیوس</cite></small>
+              </blockquote>
+            </div>
+            <ul class="list-group">
+              <li class="list-group-item">وحید خرازی</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <blockquote class="pull-right">
+                <p>هنگامی‌ که مصمم به عمل شدید، باید درهای تردید را کاملأ مسدود سازید.</p>
+                <small><cite title="Source Title">فردریش نیچه</cite></small>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h1>کوتیا</h1>
+        <div infinite-scroll="addItems()" class="scroll-loader" can-load="canLoad" threshold="100">
+          <ul>
+            <li ng-repeat="item in items"> {$ item.name $} </li>
+          </ul>
+        </div>
+        <p>{$ maxItems $} items
+          <small>( {$ items.length $} added)</small>
+          <button ng-click="items=[];canLoad=true;addItems();" class="btn">Reset</button>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
