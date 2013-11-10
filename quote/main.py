@@ -1,5 +1,6 @@
-from flask import Flask, session, redirect, url_for, escape, request, render_template
-from flask.ext import restful, login
+from flask import Flask, session, redirect, url_for, escape, request, render_template, Response
+from flask.ext import restful
+from flaskext.gravatar import Gravatar
 from session_interface import RedisSessionInterface
 
 
@@ -7,6 +8,16 @@ app = Flask(__name__)
 api = restful.Api(app)
 
 app.session_interface = RedisSessionInterface()
+
+gravatar = Gravatar(
+    app,
+    size=25,
+    rating='g',
+    default='retro',
+    force_default=False,
+    force_lower=False
+)
+
 
 @app.route('/')
 def index():
@@ -28,6 +39,7 @@ def login():
         </form>
     '''
 
+
 @app.route('/logout')
 def logout():
     # remove the username from the session if it's there
@@ -36,17 +48,18 @@ def logout():
 
 # set the secret key.  keep this really secret:
 
+
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('page_not_found.html'), 404
 
 
 class HelloWorld(restful.Resource):
+
     def get(self):
         return {'hello': 'world'}
 
 api.add_resource(HelloWorld, '/api')
-
 
 
 if __name__ == '__main__':
