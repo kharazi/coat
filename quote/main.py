@@ -1,8 +1,14 @@
 from flask import Flask, session, redirect, url_for, escape, request, render_template
+from flask.ext import restful, login
+from session_interface import RedisSessionInterface
 
-quote = Flask(__name__)
 
-@quote.route('/')
+app = Flask(__name__)
+api = restful.Api(app)
+
+app.session_interface = RedisSessionInterface()
+
+@app.route('/')
 def index():
     if 'username' in session:
         return render_template('index.html', name=session['username'])
@@ -10,7 +16,7 @@ def index():
         return render_template('index.html', name='Not Session')
 
 
-@quote.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         session['username'] = request.form['username']
@@ -22,7 +28,7 @@ def login():
         </form>
     '''
 
-@quote.route('/logout')
+@app.route('/logout')
 def logout():
     # remove the username from the session if it's there
     session.pop('username', None)
@@ -30,14 +36,23 @@ def logout():
 
 # set the secret key.  keep this really secret:
 
-@quote.errorhandler(404)
+@app.errorhandler(404)
 def page_not_found(error):
     return render_template('page_not_found.html'), 404
 
+
+class HelloWorld(restful.Resource):
+    def get(self):
+        return {'hello': 'world'}
+
+api.add_resource(HelloWorld, '/api')
+
+
+
 if __name__ == '__main__':
-    quote.secret_key = 'ThisIsVeryVeryHard'
-    quote.debug = True
-    if quote.debug:
+    app.secret_key = 'ThisIsVeryVeryHard'
+    app.debug = True
+    if app.debug:
         from lesscss import LessCSS
         LessCSS(media_dir='static/css', based=False)
-    quote.run()
+    app.run()
