@@ -4,8 +4,13 @@
     <meta charset='utf-8'>
     <title>Quote - A Quote Sharing Web Service</title>
 
+    <link rel="shortcut icon" href="/static/images/fav.png" type="image/png">
+    <link rel="shortcut icon" href="/static/images/fav.png" type="image/png" />
+
     <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css"></link>
     <link rel="stylesheet" type="text/css" href="/static/css/index.css"></link>
+    
+
 
     <script type="text/javascript" src="/static/js/angular.js"></script>
     <script type="text/javascript" src="/static/js/infinite-scroll.js"></script>
@@ -62,7 +67,7 @@
                 <img width="25px" height="25px" src="/static/images/twitter.png" />
                 <img width="25px" height="25px" src="/static/images/like.png" /> 100
 
-                <img src="{{ 'vahid@kharazi.net' | gravatar }}" />
+                <img class="img-rounded" src="{{ 'vahid@kharazi.net' | gravatar }}" />
 وحید خرازی</li>
             </ul>
           </div>
@@ -76,8 +81,27 @@
               </blockquote>
             </div>
           </div>
+
+          <div class="panel panel-success">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-8">
+                  <b>آیا می‌شناسید؟</b><br/>
+
+                  سینا محمودی<br/>
+
+                  <button type="button" class="btn btn-default">دنبال‌کردن</button>
+                </div>
+                <div class="col-md-4">
+                  <img class="img-thumbnail" src="{{ 'itz.s1na@gmail.com' | gravatar(size=100) }}"></img>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
+
       <div>
         <h1>کوتیا</h1>
         <div infinite-scroll="addQuote()" class="scroll-loader" can-load="canLoad" threshold="100">
