@@ -75,14 +75,14 @@
       </div>
       <div>
         <h1>کوتیا</h1>
-        <div infinite-scroll="addItems()" class="scroll-loader" can-load="canLoad" threshold="100">
+        <div infinite-scroll="addQuote()" class="scroll-loader" can-load="canLoad" threshold="100">
           <ul>
             <li ng-repeat="item in items"> {$ item.name $} </li>
           </ul>
         </div>
         <p>{$ maxItems $} items
           <small>( {$ items.length $} added)</small>
-          <button ng-click="items=[];canLoad=true;addItems();" class="btn">Reset</button>
+          <button ng-click="items=[];canLoad=true;addQuote();" class="btn">Reset</button>
         </p>
       </div>
     </div>

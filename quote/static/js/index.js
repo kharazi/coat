@@ -6,7 +6,7 @@ var app = angular.module('Quote', ['infiniteScroll']);
     $scope.canLoad = true;
     $scope.maxItems = 100;
     
-    $scope.addItems = function () {
+    $scope.addQuote = function () {
       for (var i = 0; i < 10; i++) {
         $scope.items.push({name:'item ' + ($scope.items.length + 1)});
 
@@ -21,7 +21,7 @@ var app = angular.module('Quote', ['infiniteScroll']);
 
       $scope.items = [];
       $scope.canLoad = true;
-      $scope.addItems();
+      $scope.addQuote();
 
     };
 
