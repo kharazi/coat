@@ -1,5 +1,3 @@
 Flask
-lesscss
-Flask-OpenID
-Flask-CouchDB
 flask-restful
+Flask-Gravatar
