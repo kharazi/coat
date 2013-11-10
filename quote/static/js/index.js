@@ -1,6 +1,6 @@
-var app = angular.module('Quote', ['infiniteScroll']);
+var app = angular.module('coat', ['infiniteScroll']);
 
-  app.controller('QuoteCtr', function ($scope) {
+  app.controller('coatCtr', function ($scope) {
     
     $scope.items = [];
     $scope.canLoad = true;

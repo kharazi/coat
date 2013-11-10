@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app='Quote' align="rtl">
+<html ng-app='coat' align="rtl">
   <head>
     <meta charset='utf-8'>
     <title>Quote - A Quote Sharing Web Service</title>
@@ -16,13 +16,13 @@
     <script type="text/javascript" src="/static/js/infinite-scroll.js"></script>
     <script type="text/javascript" src="/static/js/index.js"></script>
     <script type="text/javascript">
-      angular.module('Quote').config(function($interpolateProvider) {
+      angular.module('coat').config(function($interpolateProvider) {
           $interpolateProvider.startSymbol('{$');
           $interpolateProvider.endSymbol('$}');
       });
     </script>
   </head>
-  <body ng-controller="QuoteCtr">
+  <body ng-controller="coatCtr">
     <div class="container">
       <div class="row">
         <br />
